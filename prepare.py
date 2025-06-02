@@ -1,17 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import torch
-import torch.nn as nn
-import torch.optim as optim
-from torch.utils.data import Dataset, DataLoader
-from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, classification_report
-import matplotlib.pyplot as plt
 from scipy.signal import find_peaks  
-from typing import Optional
+from imblearn.over_sampling import SMOTE
+import torch, os
 
-class DataPreproces:
+class DataProcessing:
     def __init__(self, filenames, lb, skip_lines=15):
         self.filenames = filenames # list of filenames 
         self.skip_lines = skip_lines
@@ -156,10 +150,6 @@ class DataPreproces:
         self.features = X_flat
     
     def get_train_test_tensors(self, train_size=1500, test_split=0.2):
-        from sklearn.model_selection import train_test_split
-        from imblearn.over_sampling import SMOTE
-        import torch
-
         X = self.features
         y = self.fft_label
 
@@ -242,11 +232,14 @@ class DataPreproces:
             plt.show()
 
 # filenames
-filenames = ['2024_01_05_0038-sl10.atf', '2024_01_05_0040-sl10.atf', '2024_03_11_0096-sl10.atf', '2024_03_17_0055.atf', 
-             '2024_03_17_0056.atf', '2024_03_17_0057.atf', '2024_03_17_0058.atf', '2024_03_17_0059.atf']
+train_folder = 'data/train'
 
-for i in range(len(filenames)):
-    filenames[i] = 'data/'+filenames[i]
+entries = os.listdir(train_folder)
+train_filenames = [
+    os.path.join(train_folder, fname)
+    for fname in entries
+    if os.path.isfile(os.path.join(train_folder, fname))
+]
 
-prep = DataPreproces(filenames, lb=6)
+prep = DataProcessing(train_filenames, lb=4)
 prep.visualise()
