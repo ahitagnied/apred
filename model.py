@@ -3,6 +3,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader
 from sklearn.preprocessing import StandardScaler
+import numpy as np
 
 # dataset class
 class TimeSeriesDataset(Dataset):
