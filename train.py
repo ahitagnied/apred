@@ -127,4 +127,5 @@ for _ in lb:
     total_windows += w
 
 acc_over_lb(test_acc, save_path=f'results/figs/acc_over_lb.png')
-print(f'avg time taken per window: {total_windows/ total_time}')
+print(f'num windows per unit time: {total_windows/ total_time}')
+print(f'time per window: {total_time/ total_windows}')
