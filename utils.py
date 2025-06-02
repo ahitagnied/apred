@@ -86,6 +86,7 @@ def model_eval(model, test_loader, device):
     t1 = time.time()
     num_windows = len(y_true)
     total_time = t1-t0
+    print(f'total windows: {num_windows} \n total time: {total_time}')
     return test_acc, num_windows, total_time
 
 #----test acc plot-------------------------------------------------------------
