@@ -232,14 +232,14 @@ class DataProcessing:
             plt.show()
 
 # filenames
-train_folder = 'data/train'
+# train_folder = 'data/train'
 
-entries = os.listdir(train_folder)
-train_filenames = [
-    os.path.join(train_folder, fname)
-    for fname in entries
-    if os.path.isfile(os.path.join(train_folder, fname))
-]
+# entries = os.listdir(train_folder)
+# train_filenames = [
+#     os.path.join(train_folder, fname)
+#     for fname in entries
+#     if os.path.isfile(os.path.join(train_folder, fname))
+# ]
 
-prep = DataProcessing(train_filenames, lb=4)
-prep.visualise()
+# prep = DataProcessing(train_filenames, lb=4)
+# prep.visualise()
